@@ -11,7 +11,7 @@ This application shows a list of current mobile operating systems with their ver
 - StateFlow — reactive data updates
 - Coroutines — asynchronous operations
 
-## Supported Operating Systems
+## Supported Operating Systems (Submitted information about...)
 
 | OS | Version | Link |
 |----|---------|------|
