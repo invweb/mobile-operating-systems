@@ -28,7 +28,6 @@ fun SystemDetailScreen(
     modifier: Modifier = Modifier,
     navController: NavController? = null
 ) {
-    val context = LocalContext.current
     val systemInfo = MobileSystemsConfig.systems.firstOrNull { it.nameResId == systemNameResId }
     
     if (systemInfo == null) {
@@ -47,6 +46,8 @@ fun SystemDetailScreen(
         R.string.tizen -> R.string.description_tizen
         else -> R.string.description_android
     }
+    
+    val context = LocalContext.current
     
     Scaffold(
         topBar = {
