@@ -7,6 +7,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -22,6 +24,7 @@ fun SystemDetailScreen(
     systemNameResId: Int,
     modifier: Modifier = Modifier
 ) {
+    val context = LocalContext.current
     val systemInfo = MobileSystemsConfig.systems.firstOrNull { it.nameResId == systemNameResId }
     
     if (systemInfo == null) {
@@ -65,12 +68,15 @@ fun SystemDetailScreen(
         
         Spacer(modifier = Modifier.height(32.dp))
         
+        val url by remember(systemInfo.url) { 
+            androidx.compose.runtime.mutableStateOf(systemInfo.url) 
+        }
+        
         Button(
             onClick = {
-                val context = LocalContext.current
                 val intent = android.content.Intent(
                     android.content.Intent.ACTION_VIEW,
-                    android.net.Uri.parse(systemInfo.url)
+                    android.net.Uri.parse(url)
                 )
                 context.startActivity(intent)
             },
